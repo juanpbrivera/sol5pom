@@ -1,6 +1,5 @@
 // support/world.ts
-import { setWorldConstructor } from '@cucumber/cucumber';  // Usa la instancia local
-import { AutomatizacionWeb } from '@automation/web-automation-framework';
+import { setWorldConstructor } from '@cucumber/cucumber';
+import { CustomWorld } from './CustomWorld';
 
-// Registrar desde la instancia local de Cucumber
-setWorldConstructor(AutomatizacionWeb);
+setWorldConstructor(CustomWorld);

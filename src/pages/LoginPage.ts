@@ -10,7 +10,7 @@ export class LoginPage {
     welcomeMessage: '.texto-bienvenidos'
   };
 
-  constructor(private world: AutomatizacionWeb) {}
+  constructor(private readonly world: AutomatizacionWeb) {}
 
   async navegarALogin() {
     await this.world.abrirPaginaBase('/login');
@@ -21,9 +21,7 @@ export class LoginPage {
   }
 
   async ingresarContrasena(contrasena: string) {
-    // Para XPath, necesitamos usar el método de Playwright directamente
-    const pagina = this.world.obtenerPagina();
-    await pagina.locator(this.locators.passwordInput).fill(contrasena);
+    await this.world.escribirEnCampo(this.locators.passwordInput, contrasena);
   }
 
   async hacerClicEnIngresar() {
