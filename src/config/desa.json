@@ -1,0 +1,14 @@
+{
+  "env": "desa",
+  "baseUrl": "https://demowebshop.tricentis.com",
+  "browser": "chromium",
+  "headless": false,
+  "trace": "retain-on-failure",
+  "video": false,
+  "screenshotOnFailure": true,
+  "contextOptions": {
+    "viewport": { "width": 1366, "height": 768 },
+    "locale": "es-PE",
+    "timezoneId": "America/Lima"
+  }
+}

@@ -1,47 +1,46 @@
 // pages/LoginPage.ts
+import { PageObject } from '@automation/web-automation-framework';
 import type { AutomatizacionWeb } from '@automation/web-automation-framework';
 
-export class LoginPage {
-  private readonly locators = {
-    usernameInput: ".form-group:has(> label:has-text('Usuario')) input[type='text']",
-    passwordInput: "//label[normalize-space()='Contraseña']/following::input[@type='password'][1]",
-    loginButton: { rol: 'button', nombre: /ingresar/i },
-    errorMessage: '.toast-message',
-    welcomeMessage: '.texto-bienvenidos'
-  };
+export class LoginPage extends PageObject {
+  // Locators simplificados - sin objeto envolvente
+  private readonly usuario = ".form-group:has(> label:has-text('Usuario')) input[type='text']";
+  private readonly contrasena = "//label[normalize-space()='Contraseña']/following::input[@type='password'][1]";
+  private readonly mensajeError = '.toast-message';
+  private readonly mensajeBienvenida = '.texto-bienvenidos';
 
-  constructor(private readonly world: AutomatizacionWeb) {}
+  constructor(world: AutomatizacionWeb) {super(world);}
 
   async navegarALogin() {
-    await this.world.abrirPaginaBase('/login');
+    await this.navegar('/login');
   }
 
   async ingresarUsuario(usuario: string) {
-    await this.world.escribirEnCampo(this.locators.usernameInput, usuario);
+    await this.escribir(this.usuario, usuario);
   }
 
   async ingresarContrasena(contrasena: string) {
-    await this.world.escribirEnCampo(this.locators.passwordInput, contrasena);
+    await this.escribir(this.contrasena, contrasena);
   }
 
   async hacerClicEnIngresar() {
-    await this.world.hacerClicPorRol(
-      'button', 
+    await this.clickPorRol(
+      'button',
       '/ingresar/i'
     );
   }
 
   async obtenerMensajeError(): Promise<string | null> {
-    await this.world.esperarElementoVisible(this.locators.errorMessage, 5000);
-    return await this.world.obtenerTexto(this.locators.errorMessage);
+    await this.esperar(this.mensajeError, 5000);
+    return await this.world.obtenerTexto(this.mensajeError);
   }
 
   async verificarMensajeBienvenida() {
-    await this.world.esperarElementoVisible(this.locators.welcomeMessage, 10000);
+    await this.esperar(this.mensajeBienvenida, 10000);
   }
 
   async mensajeErrorContiene(texto: string) {
-    await this.world.esperarTextoEnElemento(this.locators.errorMessage, texto, 5000);
+    await this.esperarTexto(this.mensajeBienvenida, texto, 5000);
   }
 
   // Método todo-en-uno para login completo
