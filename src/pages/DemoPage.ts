@@ -1,13 +1,9 @@
-import { AutomatizacionWeb, PageObject } from "@automation/web-automation-framework";
-
-
+import { PageObject } from '@automation/web-automation-framework';
 
 export class DemoPage extends PageObject {
 
     private readonly inputSearch = "#small-searchterms";
     private readonly btnSearch = ".search-box-button";
-
-    constructor(world: AutomatizacionWeb) { super(world); }
 
     async navegarALogin() {
         await this.navegar('/');

@@ -1,15 +1,12 @@
 // pages/LoginPage.ts
 import { PageObject } from '@automation/web-automation-framework';
-import type { AutomatizacionWeb } from '@automation/web-automation-framework';
 
 export class LoginPage extends PageObject {
-  // Locators simplificados - sin objeto envolvente
+
   private readonly usuario = ".form-group:has(> label:has-text('Usuario')) input[type='text']";
   private readonly contrasena = "//label[normalize-space()='Contraseña']/following::input[@type='password'][1]";
   private readonly mensajeError = '.toast-message';
   private readonly mensajeBienvenida = '.texto-bienvenidos';
-
-  constructor(world: AutomatizacionWeb) {super(world);}
 
   async navegarALogin() {
     await this.navegar('/login');
