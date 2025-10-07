@@ -8,6 +8,10 @@ export class LoginPage extends PageObject {
   private readonly mensajeError = '.toast-message';
   private readonly mensajeBienvenida = '.texto-bienvenidos';
 
+  private obtenerMensaje() {
+    return this.porTexto('× Inicio Sesión.');
+  }
+
   async navegarALogin() {
     await this.navegar('/login');
   }
@@ -21,15 +25,17 @@ export class LoginPage extends PageObject {
   }
 
   async hacerClicEnIngresar() {
-    await this.clickPorRol(
-      'button',
-      '/ingresar/i'
-    );
+    await this.porRol('button', { name: 'Ingresar' }).click();
+  }
+
+  async verificarMensajeError(textoEsperado: string) {
+    await this.verificar(this.obtenerMensaje()).estaVisible();
+    await this.verificar(this.obtenerMensaje()).contieneTexto(textoEsperado);
   }
 
   async obtenerMensajeError(): Promise<string | null> {
     await this.esperar(this.mensajeError, 5000);
-    return await this.world.obtenerTexto(this.mensajeError);
+    return await this.texto(this.mensajeError);
   }
 
   async verificarMensajeBienvenida() {

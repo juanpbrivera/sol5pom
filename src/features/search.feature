@@ -1,4 +1,4 @@
-@bdd @smoke @search
+@bdd @search
 Feature: Búsqueda y navegación en Demo Web Shop
 
   Background:

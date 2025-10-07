@@ -2,10 +2,10 @@ import { PageObject } from '@automation/web-automation-framework';
 
 export class DemoPage extends PageObject {
 
-    private readonly inputBusqueda = "#small-searchterms";
+    private readonly inputBusqueda = "#small-searchterms12313";
     // private readonly btnSearch = ".search-box-button";
     private get btnBusqueda() {
-        return this.byRole('button', { name: 'Search' });
+        return this.byRole('button', { name: 'Searchign' });
     }
 
     async navegarALogin() {

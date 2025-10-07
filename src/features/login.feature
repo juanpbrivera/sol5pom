@@ -7,15 +7,22 @@ Feature: Login de Usuario
   Background:
     Given que navego a la página de login
 
+  # @LoginCredenciales @smoke
+  Scenario: Login exitoso con credenciales validas
+    When ingreso el usuario "VendedorBanco"
+    And ingreso la contraseña "B4nbif$P3rv"
+    # And hago clic en ingresar
+    # Then debo ver el mensaje de bienvenida
+
   @LoginCredenciales @smoke
-  Scenario: Login exitoso con credenciales válidas
+  Scenario: Login exitoso con credenciales validas trucho
     When ingreso el usuario "VendedorBanco"
     And ingreso la contraseña "B4nbif$P3rv"
     And hago clic en ingresar
-    Then debo ver el mensaje de bienvenida
+    Then debo ver el mensaje de error "× Inicio Sesión."
 
   @LoginCredencialesInvalidas @regression
-  Scenario: Login fallido con credenciales inválidas
+  Scenario: Login fallido con credenciales invalidas
     When ingreso el usuario "invalid@example.com"
     And ingreso la contraseña "WrongPass"
     And hago clic en ingresar

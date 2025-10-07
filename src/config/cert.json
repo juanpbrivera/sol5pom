@@ -1,6 +1,6 @@
 {
   "env": "cert",
-  "baseUrl": "https://app-cert.banbif.com.pe",
+  "baseUrl": "https://pva.qas.banbif.com.pe",
   "browser": "chromium",
   "headless": false,
   "trace": "retain-on-failure",
