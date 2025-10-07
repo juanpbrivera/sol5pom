@@ -1,23 +1,21 @@
 // support/CustomWorld.ts
 import { AutomatizacionWeb } from '@automation/web-automation-framework';
+import { setWorldConstructor } from '@cucumber/cucumber';  // ← Importar directamente
 import { LoginPage } from '../pages/LoginPage';
-import { DemoPage } from '../pages/demoPage';
+import { DemoPage } from '../pages/DemoPage';
 
 /**
- * World personalizado del proyecto con todas las páginas disponibles.
- * Extiende AutomatizacionWeb del framework para heredar funcionalidad base.
+ * World personalizado del proyecto.
  */
 export class CustomWorld extends AutomatizacionWeb {
   public loginPage!: LoginPage;
   public demoPage!: DemoPage;
   
-  /**
-   * Inicializa el navegador y todas las páginas del proyecto.
-   * Se ejecuta en el hook Before de cada escenario.
-   */
   async iniciar() {
     await super.iniciar();
     this.loginPage = new LoginPage(this);
     this.demoPage = new DemoPage(this);
   }
 }
+
+setWorldConstructor(CustomWorld);

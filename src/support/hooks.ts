@@ -1,6 +1,4 @@
-// support/hooks.ts
-import { Before, After, AfterAll, setDefaultTimeout, Status, AfterStep } from '@cucumber/cucumber';
-import { AutomatizacionWeb } from '@automation/web-automation-framework';
+import { Before, After, AfterStep, AfterAll, setDefaultTimeout, Status } from '@cucumber/cucumber';
 import { CustomWorld } from './CustomWorld';
 
 setDefaultTimeout(15_000);
@@ -18,5 +16,6 @@ After(async function (this: CustomWorld, scenario) {
 });
 
 AfterAll(async function () {
+  const { AutomatizacionWeb } = await import('@automation/web-automation-framework');
   await AutomatizacionWeb.generarReporte();
 });
