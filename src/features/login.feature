@@ -7,12 +7,12 @@ Feature: Login de Usuario
   Background:
     Given que navego a la página de login
 
-  # @LoginCredenciales @smoke
+  @LoginCredenciales @smoke
   Scenario: Login exitoso con credenciales validas
     When ingreso el usuario "VendedorBanco"
     And ingreso la contraseña "B4nbif$P3rv"
-    # And hago clic en ingresar
-    # Then debo ver el mensaje de bienvenida
+    And hago clic en ingresar
+    Then debo ver el mensaje de bienvenida
 
   @LoginCredenciales @smoke
   Scenario: Login exitoso con credenciales validas trucho
