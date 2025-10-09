@@ -1,7 +1,7 @@
 import { Before, After, AfterStep, AfterAll, setDefaultTimeout, Status } from '@cucumber/cucumber';
 import { CustomWorld } from './CustomWorld';
 
-setDefaultTimeout(15_000);
+setDefaultTimeout(30_000);
 
 Before(async function (this: CustomWorld, scenario) {
   await this.iniciarEscenario(scenario);

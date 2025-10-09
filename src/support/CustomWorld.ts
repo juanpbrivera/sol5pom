@@ -1,6 +1,6 @@
 // support/CustomWorld.ts
 import { AutomatizacionWeb } from '@automation/web-automation-framework';
-import { setWorldConstructor } from '@cucumber/cucumber';  // ← Importar directamente
+import { setWorldConstructor } from '@cucumber/cucumber';
 import { LoginPage } from '../pages/LoginPage';
 /**
  * World personalizado del proyecto.

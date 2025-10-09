@@ -7,7 +7,8 @@
     "test:firefox": "node run --browser=firefox",
     "test:webkit": "node run --browser=webkit",
     "test:prod": "node run --env=prod",
-    "test:desa": "node run --env=desa"
+    "test:desa": "node run --env=desa",
+    "test:cert": "node run --env=cert"
   },
   "dependencies": {
     "@automation/web-automation-framework": "file:../../Framework5/src"

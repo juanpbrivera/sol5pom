@@ -23,10 +23,7 @@ Then('debo ver el mensaje de bienvenida', async function (this: CustomWorld) {
 });
 
 Then('debo ver un mensaje de error de credenciales', async function (this: CustomWorld) {
-    const mensaje = await this.loginPage.obtenerMensajeError();
-    if (!mensaje) {
-        throw new Error('No se encontró el mensaje de error');
-    }
+    await this.loginPage.verificarMensajeErrorCredenciales();
 });
 
 Then('el mensaje de error debe contener {string}', async function (this: CustomWorld, textoEsperado: string) {

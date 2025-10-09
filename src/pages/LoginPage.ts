@@ -6,7 +6,10 @@ export class LoginPage extends PageObject {
   private readonly usuario = ".form-group:has(> label:has-text('Usuario')) input[type='text']";
   private readonly contrasena = "//label[normalize-space()='Contraseña']/following::input[@type='password'][1]";
   private readonly mensajeError = '.toast-message';
-  private readonly mensajeBienvenida = '.texto-bienvenidos';
+  
+  private get mensajeBienvenida() {
+    return this.$('.texto-bienvenidos');
+  }
 
   private obtenerMensaje() {
     return this.porTexto('× Inicio Sesión.');
@@ -28,6 +31,10 @@ export class LoginPage extends PageObject {
     await this.porRol('button', { name: 'Ingresar' }).click();
   }
 
+  private obtenerMensajeErrorLoginAutentificacion() {
+    return this.porRol('alert');
+  }
+
   async verificarMensajeError(textoEsperado: string) {
     await this.verificar(this.obtenerMensaje()).estaVisible();
     await this.verificar(this.obtenerMensaje()).contieneTexto(textoEsperado);
@@ -39,11 +46,15 @@ export class LoginPage extends PageObject {
   }
 
   async verificarMensajeBienvenida() {
-    await this.esperar(this.mensajeBienvenida, 10000);
+    await this.verificar(this.mensajeBienvenida).estaVisible();
   }
 
   async mensajeErrorContiene(texto: string) {
-    await this.esperarTexto(this.mensajeBienvenida, texto, 5000);
+    await this.verificar(this.mensajeBienvenida).tieneTexto(texto);
+  }
+
+  async verificarMensajeErrorCredenciales() {
+    await this.verificar(this.obtenerMensajeErrorLoginAutentificacion()).estaVisible();
   }
 
   // Método todo-en-uno para login completo
