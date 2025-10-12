@@ -7,6 +7,12 @@
   "video": false,
   "screenshotOnFailure": true,
   "screenshotMode": "always",
+  "timeout": 10000,
+  "timeoutMultipliers": {
+    "playwright": 0.83,
+    "assertion": 0.75,
+    "step": 0.5
+  },
   "contextOptions": {
     "viewport": { "width": 1366, "height": 768 },
     "locale": "es-PE",

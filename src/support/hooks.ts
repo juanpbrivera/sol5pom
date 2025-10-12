@@ -1,7 +1,11 @@
 import { Before, After, AfterStep, AfterAll, setDefaultTimeout, Status } from '@cucumber/cucumber';
 import { CustomWorld } from './CustomWorld';
+import { AutomatizacionWeb } from '@automation/web-automation-framework';
 
-setDefaultTimeout(60_000);
+const logger = AutomatizacionWeb.crearLogger('CucumberHooks');
+
+AutomatizacionWeb.cargarConfiguracion();
+setDefaultTimeout(AutomatizacionWeb.obtenerTimeoutCucumber());
 
 Before(async function (this: CustomWorld, scenario) {
   await this.iniciarEscenario(scenario);
@@ -16,6 +20,5 @@ After(async function (this: CustomWorld, scenario) {
 });
 
 AfterAll(async function () {
-  const { AutomatizacionWeb } = await import('@automation/web-automation-framework');
   await AutomatizacionWeb.generarReporte();
 });
