@@ -5,7 +5,6 @@
   "headless": false,
   "trace": "retain-on-failure",
   "video": false,
-  "screenshotOnFailure": true,
   "screenshotMode": "always",
   "timeout": 10000,
   "timeoutMultipliers": {
