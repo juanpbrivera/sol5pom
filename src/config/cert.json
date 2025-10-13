@@ -13,22 +13,27 @@
     "step": 0.5
   },
   "contextOptions": {
-    "viewport": { "width": 1366, "height": 768 },
+    "viewport": {
+      "width": 1366,
+      "height": 768
+    },
     "locale": "es-PE",
     "timezoneId": "America/Lima"
   },
-  "credenciales": {
-    "vendedor": {
-      "usuario": "VendedorBanco",
-      "password": "B4nbif$P3rv"
-    },
-    "administrador": {
-      "usuario": "AdminBanco",
-      "password": "AdM1n$ecur3"
-    },
-    "cliente": {
-      "usuario": "ClientePrueba",
-      "password": "Cl13nt3$123"
+  "dataPrueba": {
+    "credenciales": {
+      "vendedor": {
+        "usuario": "VendedorBanco",
+        "password": "B4nbif$P3rv"
+      },
+      "administrador": {
+        "usuario": "AdminBanco",
+        "password": "AdM1n$ecur3"
+      },
+      "cliente": {
+        "usuario": "ClientePrueba",
+        "password": "Cl13nt3$123"
+      }
     }
   }
 }
