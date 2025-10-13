@@ -26,10 +26,6 @@ When('ingreso como {string} usando CSV', async function (this: CustomWorld, rol:
     await this.loginPage.iniciarSesionCSVComo(rol);
 });
 
-When('ingreso el usuario {string}', async function (this: CustomWorld, usuario: string) {
-    await this.loginPage.ingresarUsuario(usuario);
-});
-
 Then('debo ver el mensaje de bienvenida', async function (this: CustomWorld) {
     await this.loginPage.verificarMensajeBienvenida();
 });

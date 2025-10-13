@@ -22,22 +22,14 @@ Feature: Login de Usuario
     When ingreso como "aprobador" usando CSV
     Then debo ver el mensaje de bienvenida
 
+  @LoginCredencialesInvalidas @regression
+  Scenario: Login fallido con credenciales invalidas
+    When ingreso el usuario "invalid@example.com"
+    And ingreso la contraseña "WrongPass"
+    And hago clic en ingresar
+    Then debo ver un mensaje de error de credenciales
 
-  # @LoginCredenciales @smoke
-  # Scenario: Login exitoso con credenciales validas
-  #   When ingreso el usuario "VendedorBanco"
-  #   And ingreso la contraseña "B4nbif$P3rv"
-  #   And hago clic en ingresar
-  #   Then debo ver el mensaje de bienvenida
-  # @LoginCredencialesInvalidas @regression
-  # Scenario: Login fallido con credenciales invalidas
-  #   When ingreso el usuario "invalid@example.com"
-  #   And ingreso la contraseña "WrongPass"
-  #   And hago clic en ingresar
-  #   Then debo ver un mensaje de error de credenciales
-  # @LoginCredenciales @smoke
-  # Scenario: Login sin exito cuando es fuera de hora
-  #   When ingreso el usuario "VendedorBanco"
-  #   And ingreso la contraseña "B4nbif$P3rv"
-  #   And hago clic en ingresar
-  #   Then debo ver el mensaje de error "× Inicio Sesión."
+  @LoginCredenciales @smoke
+  Scenario: Login sin exito cuando es fuera de hora
+    When ingreso como "aprobador" usando JSON
+    Then debo ver el mensaje de error "× Inicio Sesión."
