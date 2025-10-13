@@ -18,6 +18,18 @@ When('hago clic en ingresar', async function (this: CustomWorld) {
     await this.loginPage.hacerClicEnIngresar();
 });
 
+When('ingreso como {string}', async function (
+    this: CustomWorld,
+    rol: 'vendedor' | 'administrador' | 'cliente'
+) {
+    await this.loginPage.iniciarSesionComo(rol);
+});
+
+// ✅ Steps originales para casos específicos
+When('ingreso el usuario {string}', async function (this: CustomWorld, usuario: string) {
+    await this.loginPage.ingresarUsuario(usuario);
+});
+
 Then('debo ver el mensaje de bienvenida', async function (this: CustomWorld) {
     await this.loginPage.verificarMensajeBienvenida();
 });
@@ -30,6 +42,6 @@ Then('el mensaje de error debe contener {string}', async function (this: CustomW
     await this.loginPage.mensajeErrorContiene(textoEsperado);
 });
 
-Then('debo ver el mensaje de error {string}', async function(this: CustomWorld, textoEsperado: string) {
-  await this.loginPage.verificarMensajeError(textoEsperado);
+Then('debo ver el mensaje de error {string}', async function (this: CustomWorld, textoEsperado: string) {
+    await this.loginPage.verificarMensajeError(textoEsperado);
 })

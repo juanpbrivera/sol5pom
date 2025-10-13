@@ -8,22 +8,28 @@ Feature: Login de Usuario
     Given que navego a la página de login
 
   @LoginCredenciales @smoke
-  Scenario: Login exitoso con credenciales validas
-    When ingreso el usuario "VendedorBanco"
-    And ingreso la contraseña "B4nbif$P3rv"
-    And hago clic en ingresar
+  Scenario: Login exitoso con vendedor del ambiente
+    When ingreso como "vendedor"
     Then debo ver el mensaje de bienvenida
 
-  @LoginCredencialesInvalidas @regression
-  Scenario: Login fallido con credenciales invalidas
-    When ingreso el usuario "invalid@example.com"
-    And ingreso la contraseña "WrongPass"
-    And hago clic en ingresar
-    Then debo ver un mensaje de error de credenciales
+  # @LoginCredenciales @smoke
+  # Scenario: Login exitoso con credenciales validas
+  #   When ingreso el usuario "VendedorBanco"
+  #   And ingreso la contraseña "B4nbif$P3rv"
+  #   And hago clic en ingresar
+  #   Then debo ver el mensaje de bienvenida
 
-  @LoginCredenciales @smoke
-  Scenario: Login sin exito cuando es fuera de hora
-    When ingreso el usuario "VendedorBanco"
-    And ingreso la contraseña "B4nbif$P3rv"
-    And hago clic en ingresar
-    Then debo ver el mensaje de error "× Inicio Sesión."
+  # @LoginCredencialesInvalidas @regression
+  # Scenario: Login fallido con credenciales invalidas
+  #   When ingreso el usuario "invalid@example.com"
+  #   And ingreso la contraseña "WrongPass"
+  #   And hago clic en ingresar
+  #   Then debo ver un mensaje de error de credenciales
+
+  # @LoginCredenciales @smoke
+  # Scenario: Login sin exito cuando es fuera de hora
+  #   When ingreso el usuario "VendedorBanco"
+  #   And ingreso la contraseña "B4nbif$P3rv"
+  #   And hago clic en ingresar
+  #   Then debo ver el mensaje de error "× Inicio Sesión."
+

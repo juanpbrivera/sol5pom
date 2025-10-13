@@ -1,4 +1,3 @@
-// pages/LoginPage.ts
 import { PageObject } from '@automation/web-automation-framework';
 
 export class LoginPage extends PageObject {
@@ -57,10 +56,59 @@ export class LoginPage extends PageObject {
     await this.verificar(this.obtenerMensajeErrorLoginAutentificacion()).estaVisible();
   }
 
-  // Método todo-en-uno para login completo
+  /**
+   * ✅ NUEVO: Login usando credenciales del JSON configurado.
+   * 
+   * Lee de cert.json o desa.json según el ambiente:
+   * ```json
+   * {
+   *   "credenciales": {
+   *     "vendedor": { "usuario": "...", "password": "..." }
+   *   }
+   * }
+   * ```
+   * 
+   * @param rol - Rol del usuario ('vendedor' | 'administrador' | 'cliente')
+   */
+  async iniciarSesionComo(rol: 'vendedor' | 'administrador' | 'cliente') {
+    const config = this.world.obtenerConfiguracion();
+    
+    // Lee credenciales del JSON
+    const credencial = config.credenciales?.[rol];
+    
+    if (!credencial) {
+      throw new Error(
+        `Credencial '${rol}' no encontrada en ${config.env}.json\n` +
+        `Verifica que existe: credenciales.${rol}.usuario y credenciales.${rol}.password`
+      );
+    }
+    
+    await this.ingresarUsuario(credencial.usuario);
+    await this.ingresarContrasena(credencial.password);
+    await this.hacerClicEnIngresar();
+  }
+
+  /**
+   * Login manual con credenciales específicas.
+   * Úsalo para casos edge o credenciales inválidas.
+   */
   async iniciarSesion(usuario: string, contrasena: string) {
     await this.ingresarUsuario(usuario);
     await this.ingresarContrasena(contrasena);
     await this.hacerClicEnIngresar();
+  }
+
+  /**
+   * ✅ NUEVO: Obtiene data de prueba del JSON.
+   * 
+   * @example
+   * ```typescript
+   * const cuenta = await loginPage.obtenerDataPrueba('cuentaValida');
+   * // Retorna: "0011-2233-4455-6677" (desde cert.json)
+   * ```
+   */
+  obtenerDataPrueba<T = string>(key: string): T | undefined {
+    const config = this.world.obtenerConfiguracion();
+    return config.dataPrueba?.[key] as T;
   }
 }
