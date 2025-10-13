@@ -18,14 +18,14 @@ When('hago clic en ingresar', async function (this: CustomWorld) {
     await this.loginPage.hacerClicEnIngresar();
 });
 
-When('ingreso como {string}', async function (
-    this: CustomWorld,
-    rol: 'vendedor' | 'administrador' | 'cliente'
-) {
-    await this.loginPage.iniciarSesionComo(rol);
+When('ingreso como {string} usando JSON', async function (this: CustomWorld, rol: 'vendedor' | 'aprobador') {
+    await this.loginPage.iniciarSesionJsonComo(rol);
 });
 
-// ✅ Steps originales para casos específicos
+When('ingreso como {string} usando CSV', async function (this: CustomWorld, rol: 'vendedor' | 'aprobador') {
+    await this.loginPage.iniciarSesionCSVComo(rol);
+});
+
 When('ingreso el usuario {string}', async function (this: CustomWorld, usuario: string) {
     await this.loginPage.ingresarUsuario(usuario);
 });

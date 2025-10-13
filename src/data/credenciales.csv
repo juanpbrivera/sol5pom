@@ -1,0 +1,5 @@
+rol,usuario,password,ambiente
+vendedor,VendedorBancoCSV,B4nbif$P3rv,cert
+aprobador,AprobadorBancoCSV,B4nbif$P3rv,cert
+vendedor,VendedorBanco,B4nbif$P3rv,desa
+aprobador,AprobadorBanco,B4nbif$P3rv,desa

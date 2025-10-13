@@ -56,7 +56,13 @@ export class LoginPage extends PageObject {
     await this.verificar(this.obtenerMensajeErrorLoginAutentificacion()).estaVisible();
   }
 
-  async iniciarSesionComo(rol: 'vendedor' | 'administrador' | 'cliente') {
+  async iniciarSesion(usuario: string, contrasena: string) {
+    await this.ingresarUsuario(usuario);
+    await this.ingresarContrasena(contrasena);
+    await this.hacerClicEnIngresar();
+  }
+
+  async iniciarSesionJsonComo(rol: 'vendedor' | 'aprobador') {
     const config = this.world.obtenerConfiguracion();
 
     const credencial = config.dataPrueba?.credenciales?.[rol];
@@ -72,10 +78,17 @@ export class LoginPage extends PageObject {
     await this.hacerClicEnIngresar();
   }
 
+  async iniciarSesionCSVComo(rol: 'vendedor' | 'aprobador') {
+    const config = this.world.obtenerConfiguracion();
+    const credencial = await this.obtenerDataCSV<any>('credenciales', {
+      rol,
+      ambiente: config.env
+    });
 
-  async iniciarSesion(usuario: string, contrasena: string) {
-    await this.ingresarUsuario(usuario);
-    await this.ingresarContrasena(contrasena);
+    await this.ingresarUsuario(credencial.usuario);
+    await this.ingresarContrasena(credencial.password);
     await this.hacerClicEnIngresar();
   }
+
 }
+
